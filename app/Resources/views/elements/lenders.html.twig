@@ -1,0 +1,18 @@
+{% for lender in lenders %}
+
+    {% if lender.is_anonymous is defined %}
+        <div class="anonymous">
+            <p><b>anonymous lender</b><br/>Schedule unavailable</p>
+        </div>
+    {% else %}
+        <div class="lender">
+            <div class="lender-img">
+                <a href="/loans/{{ lender.loan_id }}/lenders/{{ lender.lender_id }}" data-toggle="modal" data-target="#lenderScheduleModal" ><img src="http://www.kiva.org/img/s100/{{ lender.image.id }}.jpg"></a>
+            </div>
+            {% if lender.name is defined %}
+                <p class="text-muted small">{{ lender.name }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endfor %}

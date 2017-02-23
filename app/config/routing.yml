@@ -1,0 +1,25 @@
+homepage:
+    path: /
+    defaults: { _controller: AppBundle:Default:index }
+    condition: "context.getMethod() in ['GET']"
+    schemes:  [https,http]
+search:
+    path: /search
+    defaults: { _controller: AppBundle:Search:index }
+    condition: "context.getMethod() in ['GET']"
+    schemes:  [https,http]
+loan:
+    path: /loans/{loan_id}
+    defaults: { _controller: AppBundle:Loan:index }
+    condition: "context.getMethod() in ['GET']"
+    schemes:  [https,http]
+lenders:
+    path: /loans/{loan_id}/lenders
+    defaults: { _controller: AppBundle:Lender:index }
+    condition: "context.getMethod() in ['GET']"
+    schemes:  [https,http]
+lender:
+    path: /loans/{loan_id}/lenders/{lender_id}
+    defaults: { _controller: AppBundle:Lender:index }
+    condition: "context.getMethod() in ['GET']"
+    schemes:  [https,http]

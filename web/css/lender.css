@@ -1,0 +1,126 @@
+.navbar {
+    border-bottom: 1px solid #dddddd;
+}
+
+.details,
+.image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.image img{
+    width: 100%;
+}
+
+.link-back {
+    float: left;
+    padding: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    background-color: #0eb4b6;
+    color: #fff;
+}
+
+table.schedule tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table.schedule {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+}
+
+table.schedule th,
+table.schedule td {
+    padding: 15px;
+    text-align: left;
+}
+
+table.schedule td:hover {
+    cursor: pointer;
+}
+
+.lenders {
+    float: left;
+    width: 100%;
+}
+
+.lender {
+    float: left;
+    width: 65px;
+    height: 85px;
+    overflow: hidden;
+    margin: 25px 50px 0 0;
+}
+
+.lender img{
+    width: 65px;
+    height: auto;
+}
+
+.lender-img{
+    float: left;
+    width: 65px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.row {
+    margin: 25px 0;
+    float: left;
+    width: 100%;
+}
+
+.user-img {
+    float: left;
+    width: 65px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-right: 10px;
+ }
+
+.user-info {
+     float: left;
+     min-width: 400px;
+ }
+
+.user-info h1 {
+    margin: 0;
+}
+
+.pnk-pill {
+    background-color: #eb1478;
+    color: #fff;
+    float: left;
+    padding: 5px 25px;
+    border-radius: 3px;
+}
+
+.grn-pill {
+    background-color: #35CA97;
+    color: #fff;
+    float: left;
+    padding: 5px 25px;
+    border-radius: 3px;
+}
+
+.block {
+    text-align: center;
+    padding: 10px 0;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.user-info p,
+.block p {
+    color: #626369;
+}
+
+.fully-repaid {
+    background-color: #d5e9c9;
+}

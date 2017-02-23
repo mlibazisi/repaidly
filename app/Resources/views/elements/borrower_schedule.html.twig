@@ -1,0 +1,16 @@
+{% if schedule is defined %}
+    <table class="schedule">
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
+        {% for payment in schedule %}
+            <tr>
+                <td>{{ payment.payment_date|date("F j, Y") }}</td>
+                <td>${{ payment.payment_amount|number_format(2, '.', ',') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Currently no schedule for this loan</p>
+{% endif %}

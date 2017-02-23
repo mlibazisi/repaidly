@@ -1,0 +1,23 @@
+{% for loan in loans %}
+
+    <div class="loan">
+        <div class="image">
+            <a href="/loans/{{ loan.id }}"><img src="http://www.kiva.org/img/w960h150/{{ loan.image.id }}.jpg"></a>
+        </div>
+        <div class="details">
+            <div class="borrower">
+                <p><a href="/loans/{{ loan.id }}">{{ loan.name }}</a></p>
+            </div>
+            <div class="description">
+                <p>{{ loan.use }}</p>
+            </div>
+            <div class="funding">
+                <p><b>100% funded</b> <span class="amount">of ${{ loan.loan_amount }}</span></p>
+            </div>
+            <div class="location">
+                <p><span class="glyphicon marker glyphicon-map-marker" aria-hidden="true"></span> {{ loan.location.country }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}

@@ -1,0 +1,89 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+}
+
+ul.horizontal li{
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+}
+
+.masthead {
+    margin-top: 75px;
+    margin-bottom: 100px;
+}
+
+.masthead h1 {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 10px 0 0;
+    color: #777;
+}
+
+.logo {
+    height: 50px;
+}
+.loans-not-found {
+    font-weight: bold;
+    color: #ea4c89;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.mini-logo {
+}
+
+.grn-btn {
+    background-color: #63a541;
+    color: #fff;
+    border: none;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 2px;
+}
+
+.grn-btn:focus,
+.grn-btn:hover {
+    background-color: #49953f !important;
+    color: #fff !important;
+    outline: none !important;
+}
+
+.search-bar {
+    min-width: 400px;
+    border-radius: 0;
+    font-size: 24px;
+    margin: 25px 0;
+    font-weight: 300;
+}
+
+.search-bar,
+.search-bar:focus {
+    outline-style:none;
+    box-shadow:none;
+    border-color:transparent;
+    border-bottom: 1px solid #d0d0d0;
+    -webkit-box-shadow: none;
+    background-color: #FFFFFF !important;
+}
+
+footer {
+    padding: 20px 0 100px 0;
+    color:#ccc;
+    font-size: 13px;
+    border-top: 1px dotted #e5e5e5;
+}
+
+footer .glyphicon-heart {
+    color: #ea4c89;
+}
+
+footer a {
+    color: #3a8bbb;
+}
+
+.user-type {
+    color: #eee;
+}

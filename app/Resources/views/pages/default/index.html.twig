@@ -1,0 +1,48 @@
+{% extends 'layouts/default.html.twig' %}
+
+{% block body %}
+    <div class="container text-center masthead">
+        <img src="{{ asset('img/repaidly.png') }}" class="logo">
+        <h1 class="text-muted">Explore repayment schedules on <a href="//kiva.org" target="_blank">Kiva</a></h1>
+        <form class="form-inline" id="search-form" method="get" action="/search">
+            <input type="text" class="form-control input-lg search-bar" name="q" placeholder="Search by country or activity">
+            {% if page is defined %}
+                <input type="hidden" id="page" name="page" value="{{ page }}">
+            {% else %}
+                <input type="hidden" id="page" name="page" value="">
+            {% endif %}
+            <button type="button" class="search btn btn-default grn-btn btn-lg">Search</button>
+        </form>
+        {% if loans is defined %}
+
+            <div id="loans" class="loans">
+                {% include 'elements/loans.html.twig' %}
+            </div>
+            {% if loans|length %}
+                <div id="paginate-div">
+                    <button type="button" class="search btn btn-default grn-btn btn-lg">Show More</button>
+                </div>
+            {% else %}
+                <div class="loans-not-found">No loans where found. Please try again</div>
+                <div id="paginate-div" class="hidden">
+                    <button type="button" class="search btn btn-default grn-btn btn-lg">Show More</button>
+                </div>
+            {% endif %}
+
+        {% else %}
+            <div id="loans" class="hidden loans"></div>
+            <div class="loans-not-found hidden">No loans where found. Please try again</div>
+            <div id="paginate-div" class="hidden">
+                <button type="button" class="search btn btn-default grn-btn btn-lg">Show More</button>
+            </div>
+        {% endif %}
+    </div> <!-- /container -->
+    {% include 'elements/footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/loans.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/search-results.css') }}" rel="stylesheet">
+{% endblock %}

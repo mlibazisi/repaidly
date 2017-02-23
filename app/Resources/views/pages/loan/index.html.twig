@@ -1,0 +1,120 @@
+{% extends 'layouts/default.html.twig' %}
+
+{% block body %}
+    {% include 'elements/nav.html.twig' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="user-img">
+                    <a href="#"><img src="http://www.kiva.org/img/s100/{{ loan.image.id }}.jpg"></a>
+                </div>
+                <div class="user-info">
+                    <h1>{{ loan.name }}</h1>
+                    <p>{{ loan.use }}</p>
+                    <a href="//www.kiva.org/lend/{{ loan.id }}" target="_blank" class="grn-pill">View project details on <b>Kiva</b> <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="block">
+                    <h1>${{ loan.loan_amount|number_format(2, '.', ',') }}</h1>
+                    <p>Loan amount (USD)</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block">
+                    <h1>{{ loan.repayment_term }} months</h1>
+                    <p>Repayment term</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block">
+                    <h1>{{ loan.disbursal_date|date("j M \'y") }}</h1>
+                    <p>Disbursal date</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="payment-schedule">
+                <h4><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Borrower schedule</h4>
+                {% include 'elements/borrower_schedule.html.twig' %}
+            </div>
+            <div class="col-md-6">
+                <h4><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Lender Schedule</h4>
+                <p class="text-muted">Click on a lender to view their repayment schedule. Schedules are not available for anonymous lenders.</p>
+                <div class="lenders">
+                    <img class="loading" src="/img/loading.gif">
+                </div>
+                <div id="lender-pagination" class="hidden">
+                    <button id="lender-paginator" data-page="0" class="btn btn-default">Show more lenders</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    {% include 'elements/footer.html.twig' %}
+
+    <div class="modal fade" id="lenderScheduleModal" tabindex="-1" role="dialog" aria-labelledby="lenderScheduleModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+
+        var loan_id = {{ loan.id }};
+        var lenders_url = "/loans/" + loan_id + "/lenders";
+
+        $(document).ready(function() {
+
+            loadLenders( lenders_url );
+
+            $('#lender-paginator').click( function() {
+
+                var button = $(this);
+                var next_page =  parseInt( button.attr('data-page') ) + 1;
+                lenders_url = lenders_url + '?page=' + next_page;
+                loadLenders( lenders_url );
+
+            });
+
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+        });
+
+
+        function loadLenders( lenders_url ) {
+
+            var paginator = $('#lender-pagination');
+            var paginate_button = $('#lender-paginator');
+
+            if ( !paginator.hasClass('hidden')) {
+                paginator.addClass('hidden')
+            }
+
+            $.get( lenders_url, function( response ) {
+
+                $( ".lenders" ).append( response.data.lenders );
+                paginate_button.attr( 'data-page', response.data.paging.page );
+
+                if ( response.data.paging.page < response.data.paging.pages ) {
+                    paginator.removeClass('hidden')
+                } else {
+                    paginator.remove()
+                }
+
+                $('.loading').remove()
+
+            });
+
+        }
+
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('css/loan.css') }}" rel="stylesheet">
+{% endblock %}

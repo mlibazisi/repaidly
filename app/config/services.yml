@@ -1,0 +1,46 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    memcached_adapter:
+        class: AppBundle\Adapter\MemcachedAdapter
+        arguments: ["@service_container"]
+    guzzle_adapter:
+        class: AppBundle\Adapter\GuzzleAdapter
+    monolog_adapter:
+        class: AppBundle\Adapter\MonologAdapter
+        arguments: ["@logger"]
+    doctrine_adapter:
+        class: AppBundle\Adapter\DoctrineAdapter
+        arguments: ["@database_connection"]
+    http_service:
+        class: AppBundle\Service\HttpClientService
+        arguments: ["@guzzle_adapter", "@log_service"]
+    log_service:
+        class: AppBundle\Service\LoggerService
+        arguments: ["@monolog_adapter"]
+    cache_service:
+        class: AppBundle\Service\CacheService
+        arguments: ["@memcached_adapter", "@service_container"]
+    search_service:
+        class: AppBundle\Service\SearchService
+        arguments: ["@service_container"]
+    loan_service:
+        class: AppBundle\Service\LoanService
+        arguments: ["@service_container"]
+    lender_service:
+        class: AppBundle\Service\LenderService
+        arguments: ["@service_container"]
+    Loans_model:
+        class: AppBundle\Model\LoansModel
+        arguments: ["@doctrine_adapter"]
+    borrower_schedules_model:
+        class: AppBundle\Model\BorrowerSchedulesModel
+        arguments: ["@doctrine_adapter"]
+    lender_schedules_model:
+        class: AppBundle\Model\LenderSchedulesModel
+        arguments: ["@doctrine_adapter"]
+    scheduler_service:
+        class: AppBundle\Service\SchedulerService

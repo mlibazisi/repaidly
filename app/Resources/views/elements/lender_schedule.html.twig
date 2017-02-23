@@ -1,0 +1,17 @@
+<h4 id="lender-id">{{ schedule[0].lender_id }}</h4>
+<table class="schedule">
+    <tr>
+        <th>Date</th>
+        <th>Amount</th>
+    </tr>
+
+    {% for payment in schedule %}
+
+        <tr>
+            <td>{{ payment.receipt_date|date("F j, Y") }}</td>
+            <td>${{ payment.receipt_amount|number_format(2, '.', ',') }}</td>
+        </tr>
+
+    {% endfor %}
+
+</table>
